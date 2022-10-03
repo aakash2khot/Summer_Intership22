@@ -1,0 +1,456 @@
+{
+  "architecture": {
+    "models": {
+    },
+    "tiles": [
+      {
+        "tile": {
+          "@name": "io",
+          "sub_tile": {
+            "@name": "io",
+            "@capacity": "8",
+            "equivalent_sites": {
+              "site": {
+                "@pb_type": "io",
+                "@pin_mapping": "direct"
+              }
+            },
+            "input": {
+              "@name": "outpad",
+              "@num_pins": "1"
+            },
+            "output": {
+              "@name": "inpad",
+              "@num_pins": "1"
+            },
+            "clock": {
+              "@name": "clock",
+              "@num_pins": "1"
+            },
+            "fc": {
+              "@in_type": "frac",
+              "@in_val": "0.15",
+              "@out_type": "frac",
+              "@out_val": "0.1"
+            },
+            "pinlocations": [
+              {
+                "@pattern": "custom"
+              },
+              {
+                "loc": {
+                  "@side": "left",
+                  "#text": "io.outpad io.inpad io.clock"
+                }
+              },
+              {
+                "loc": {
+                  "@side": "top",
+                  "#text": "io.outpad io.inpad io.clock"
+                }
+              },
+              {
+                "loc": {
+                  "@side": "right",
+                  "#text": "io.outpad io.inpad io.clock"
+                }
+              },
+              {
+                "loc": {
+                  "@side": "bottom",
+                  "#text": "io.outpad io.inpad io.clock"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "tile": {
+          "@name": "clb",
+          "sub_tile": {
+            "@name": "clb",
+            "equivalent_sites": {
+              "site": {
+                "@pb_type": "clb",
+                "@pin_mapping": "direct"
+              }
+            },
+            "input": {
+              "@name": "I",
+              "@num_pins": "33",
+              "@equivalent": "full"
+            },
+            "output": {
+              "@name": "O",
+              "@num_pins": "10",
+              "@equivalent": "instance"
+            },
+            "clock": {
+              "@name": "clk",
+              "@num_pins": "1"
+            },
+            "fc": {
+              "@in_type": "frac",
+              "@in_val": "0.15",
+              "@out_type": "frac",
+              "@out_val": "0.1"
+            },
+            "pinlocations": {
+              "@pattern": "spread"
+            }
+          }
+        }
+      }
+    ],
+    "layout": {
+      "auto_layout": {
+        "@aspect_ratio": "1.000000",
+        "perimeter": {
+          "@type": "io",
+          "@priority": "100"
+        },
+        "corners": {
+          "@type": "EMPTY",
+          "@priority": "101"
+        },
+        "fill": {
+          "@type": "clb",
+          "@priority": "10"
+        }
+      }
+    },
+    "device": {
+      "sizing": {
+        "@R_minW_nmos": "6065.520020",
+        "@R_minW_pmos": "18138.500000"
+      },
+      "area": {
+        "@grid_logic_tile_area": "18748.199219"
+      },
+      "chan_width_distr": {
+        "x": {
+          "@distr": "uniform",
+          "@peak": "1.000000"
+        },
+        "y": {
+          "@distr": "uniform",
+          "@peak": "1.000000"
+        }
+      },
+      "switch_block": {
+        "@type": "wilton",
+        "@fs": "3"
+      },
+      "connection_block": {
+        "@input_switch_name": "ipin_cblock"
+      }
+    },
+    "switchlist": [
+      {
+        "switch": {
+          "@type": "mux",
+          "@name": "0",
+          "@R": "0.000000",
+          "@Cin": "0.000000e+00",
+          "@Cout": "0.000000e+00",
+          "@Tdel": "7.692000e-11",
+          "@mux_trans_size": "2.630740",
+          "@buf_size": "27.645901"
+        }
+      },
+      {
+        "switch": {
+          "@type": "mux",
+          "@name": "ipin_cblock",
+          "@R": "1516.380005",
+          "@Cout": "0.",
+          "@Cin": "0.000000e+00",
+          "@Tdel": "8.153000e-11",
+          "@mux_trans_size": "1.222260",
+          "@buf_size": "auto"
+        }
+      }
+    ],
+    "segmentlist": {
+      "segment": {
+        "@freq": "1.000000",
+        "@length": "4",
+        "@type": "unidir",
+        "@Rmetal": "0.000000",
+        "@Cmetal": "0.000000e+00",
+        "mux": {
+          "@name": "0"
+        },
+        "sb": {
+          "@type": "pattern",
+          "#text": "1 1 1 1 1"
+        },
+        "cb": {
+          "@type": "pattern",
+          "#text": "1 1 1 1"
+        }
+      }
+    },
+    "complexblocklist": [
+      {
+        "pb_type": [
+          {
+            "@name": "io"
+          },
+          {
+            "input": {
+              "@name": "outpad",
+              "@num_pins": "1"
+            }
+          },
+          {
+            "output": {
+              "@name": "inpad",
+              "@num_pins": "1"
+            }
+          },
+          {
+            "clock": {
+              "@name": "clock",
+              "@num_pins": "1"
+            }
+          },
+          {
+            "mode": {
+              "@name": "inpad",
+              "pb_type": {
+                "@name": "inpad",
+                "@blif_model": ".input",
+                "@num_pb": "1",
+                "output": {
+                  "@name": "inpad",
+                  "@num_pins": "1"
+                }
+              },
+              "interconnect": {
+                "direct": {
+                  "@name": "inpad",
+                  "@input": "inpad.inpad",
+                  "@output": "io.inpad",
+                  "delay_constant": {
+                    "@max": "4.773000e-11",
+                    "@in_port": "inpad.inpad",
+                    "@out_port": "io.inpad"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "mode": {
+              "@name": "outpad",
+              "pb_type": {
+                "@name": "outpad",
+                "@blif_model": ".output",
+                "@num_pb": "1",
+                "input": {
+                  "@name": "outpad",
+                  "@num_pins": "1"
+                }
+              },
+              "interconnect": {
+                "direct": {
+                  "@name": "outpad",
+                  "@input": "io.outpad",
+                  "@output": "outpad.outpad",
+                  "delay_constant": {
+                    "@max": "1.568000e-11",
+                    "@in_port": "io.outpad",
+                    "@out_port": "outpad.outpad"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "power": {
+              "@method": "ignore"
+            }
+          }
+        ]
+      },
+      {
+        "pb_type": {
+          "@name": "clb",
+          "input": {
+            "@name": "I",
+            "@num_pins": "33",
+            "@equivalent": "full"
+          },
+          "output": {
+            "@name": "O",
+            "@num_pins": "10",
+            "@equivalent": "instance"
+          },
+          "clock": {
+            "@name": "clk",
+            "@num_pins": "1"
+          },
+          "pb_type": [
+            {
+              "@name": "ble4",
+              "@num_pb": "10"
+            },
+            {
+              "input": {
+                "@name": "in",
+                "@num_pins": "6"
+              }
+            },
+            {
+              "output": {
+                "@name": "out",
+                "@num_pins": "1"
+              }
+            },
+            {
+              "clock": {
+                "@name": "clk",
+                "@num_pins": "1"
+              }
+            },
+            {
+              "pb_type": {
+                "@name": "lut4",
+                "@blif_model": ".names",
+                "@num_pb": "1",
+                "@class": "lut",
+                "input": {
+                  "@name": "in",
+                  "@num_pins": "6",
+                  "@port_class": "lut_in"
+                },
+                "output": {
+                  "@name": "out",
+                  "@num_pins": "1",
+                  "@port_class": "lut_out"
+                },
+                "delay_matrix": {
+                  "@type": "max",
+                  "@in_port": "lut4.in",
+                  "@out_port": "lut4.out",
+                  "#text": "3.026000e-10\n                3.026000e-10\n\t\t\t\t3.026000e-10\n\t\t\t\t3.026000e-10\n\t\t\t\t3.026000e-10\n\t\t\t\t3.026000e-10"
+                }
+              }
+            },
+            {
+              "pb_type": {
+                "@name": "ff",
+                "@blif_model": ".latch",
+                "@num_pb": "1",
+                "@class": "flipflop",
+                "input": {
+                  "@name": "D",
+                  "@num_pins": "1",
+                  "@port_class": "D"
+                },
+                "output": {
+                  "@name": "Q",
+                  "@num_pins": "1",
+                  "@port_class": "Q"
+                },
+                "clock": {
+                  "@name": "clk",
+                  "@num_pins": "1",
+                  "@port_class": "clock"
+                },
+                "T_setup": {
+                  "@value": "0.000000e-10",
+                  "@port": "ff.D",
+                  "@clock": "clk"
+                },
+                "T_clock_to_Q": {
+                  "@max": "8.699000e-11",
+                  "@port": "ff.Q",
+                  "@clock": "clk"
+                }
+              }
+            },
+            {
+              "interconnect": [
+                {
+                  "direct": {
+                    "@name": "direct1",
+                    "@input": "ble4.in",
+                    "@output": "lut4[0:0].in"
+                  }
+                },
+                {
+                  "direct": {
+                    "@name": "direct2",
+                    "@input": "lut4.out",
+                    "@output": "ff.D",
+                    "pack_pattern": {
+                      "@name": "ble6",
+                      "@in_port": "lut4.out",
+                      "@out_port": "ff.D"
+                    }
+                  }
+                },
+                {
+                  "direct": {
+                    "@name": "direct3",
+                    "@input": "ble4.clk",
+                    "@output": "ff.clk"
+                  }
+                },
+                {
+                  "mux": {
+                    "@name": "mux1",
+                    "@input": "ff.Q lut4.out",
+                    "@output": "ble4.out"
+                  }
+                }
+              ]
+            }
+          ],
+          "interconnect": [
+            {
+              "complete": [
+                {
+                  "@name": "crossbar",
+                  "@input": "clb.I ble4[9:0].out",
+                  "@output": "ble4[9:0].in"
+                },
+                {
+                  "delay_constant": {
+                    "@max": "5.197000e-11",
+                    "@in_port": "clb.I",
+                    "@out_port": "ble4[9:0].in"
+                  }
+                },
+                {
+                  "delay_constant": {
+                    "@max": "5.183000e-11",
+                    "@in_port": "ble4[9:0].out",
+                    "@out_port": "ble4[9:0].in"
+                  }
+                }
+              ]
+            },
+            {
+              "complete": {
+                "@name": "clks",
+                "@input": "clb.clk",
+                "@output": "ble4[9:0].clk"
+              }
+            },
+            {
+              "direct": {
+                "@name": "clbouts1",
+                "@input": "ble4[9:0].out",
+                "@output": "clb.O"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

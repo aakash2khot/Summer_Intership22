@@ -1,0 +1,37 @@
+{
+    "modules": {
+        "PB_BLOCK": {
+            "ports": {
+                "I": {
+                    "direction": "input",
+                    "bits": [2,3,4,5,6,7,8,9,10]
+                },
+                "CLK": {
+                    "direction": "input",
+                    "bits": [11]
+                },
+                "O":{
+                    "direction":"output",
+                    "bits": [12,13,14,15]
+                }
+            },
+       
+            "cells":{
+              "CLB":{
+                "type":"CLB",
+                "port_directions":{
+                    "i" : "input",
+                    "clk" : "input",
+                    "o" : "output"
+                },
+                "connections":{
+                    "i": [2,3,4,5,6,7,8,9,10],
+                    "clk": [11],
+                    "o": [12,13,14,15]
+                    
+                }
+            }
+        }
+    }
+}
+}
